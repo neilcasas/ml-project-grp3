@@ -1,0 +1,21 @@
+# Dataset
+SICAPv2/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Checkpoints and results
+results/checkpoints/
+results/figures/
+results/metrics.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+*.egg-info/
+dist/
+build/

@@ -1,0 +1,41 @@
+optimizer: adamw
+learning_rate: 1.0e-4
+weight_decay: 0.05
+scheduler: cosine
+epochs: 20
+batch_size: 32
+mixed_precision: true
+input_size: 224
+num_classes: 4
+seed: 42
+
+# Paths (relative to project root)
+sicapv2_root: SICAPv2
+train_xlsx: SICAPv2/partition/Validation/Val1/Train.xlsx
+val_xlsx: SICAPv2/partition/Validation/Val1/Test.xlsx
+test_xlsx: SICAPv2/partition/Test/Test.xlsx
+images_dir: SICAPv2/images
+checkpoint_dir: results/checkpoints
+figures_dir: results/figures
+metrics_file: results/metrics.json
+
+# Drive checkpoint saving (Colab)
+save_to_drive: false
+drive_checkpoint_dir: /content/drive/MyDrive/gleason_project/checkpoints
+
+# Phase-based fine-tuning
+freeze_epochs: 5    # epochs 1-5: head only
+unfreeze_epoch: 6   # epoch 6+: full model
+
+class_names: [NC, G3, G4, G5]
+
+models:
+  resnet50:
+    timm_name: resnet50
+    grad_cam_layer: layer4
+  tiny_vit_11m:
+    timm_name: tiny_vit_11m_224
+    grad_cam_layer: stages.3.blocks
+  fastvit_t8:
+    timm_name: fastvit_t8
+    grad_cam_layer: stages.3
